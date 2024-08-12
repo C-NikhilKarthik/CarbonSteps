@@ -1,1 +1,4 @@
 /.DS_Store
+venv/
+py_cache/
+server/.env

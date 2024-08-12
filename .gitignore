@@ -1,4 +1,4 @@
 /.DS_Store
 venv/
-py_cache/
+server/routes/__py_cache__
 server/.env

@@ -11,7 +11,7 @@ const config: Config = {
       colors: {
         color1: "#283618",
         color2: "#427aa1",
-        color3: "#fefae0",
+        color3: "#FFFBF3",
         color4: "#606c38",
         color5: "#a5be00",
         color6: "#74c69d",

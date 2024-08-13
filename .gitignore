@@ -1,1 +1,4 @@
 /.DS_Store
+venv/
+server/routes/__py_cache__
+server/.env

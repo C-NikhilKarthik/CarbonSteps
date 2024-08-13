@@ -1,5 +1,5 @@
 import React from "react";
-import Image from 'next/image';
+import Image from "next/image";
 import footerImage from "../public/ct3.webp"; // Adjust the path based on your project structure
 
 export default function Landing() {
@@ -26,15 +26,16 @@ export default function Landing() {
           </button>
         </div>
       </div>
-      <div className="w-full mt-8">
-        <Image 
-          src={footerImage} 
-          alt="Footer Image" 
-          layout="responsive" 
-          objectFit="cover" 
-          className="max-h-[300px]"
+      {/* <div className="w-full mt-8">
+        <Image
+          src={footerImage}
+          alt="Footer Image"
+          className="w-full absolute bottom-0"
+          width={0}
+          height={0}
+          sizes="100%"
         />
-      </div>
+      </div> */}
     </section>
   );
 }

@@ -17,18 +17,20 @@ export default function About() {
         to a sustainable future.
       </div>
 
-      <div className="pl-2">
-        We bediveve in creating a future where every action counts towards the
-        well-being of our planet.
-      </div>
-      <div className="pl-2">
-        Our tools leverage cutting-edge technology to provide actionable
-        insights tailored to your divfestyle.
-      </div>
-      <div className="pl-2">
-        Join a global community committed to making a difference, one footprint
-        at a time.
-      </div>
+      <ul className="grid list-disc md:grid-cols-3 max-w-5xl mx-auto grid-cols-1 gap-4">
+        <li className="p-4 text-color3">
+          We bediveve in creating a future where every action counts towards the
+          well-being of our planet.
+        </li>
+        <li className="p-4 text-color3">
+          Our tools leverage cutting-edge technology to provide actionable
+          insights tailored to your divfestyle.
+        </li>
+        <li className="p-4 text-color3">
+          Join a global community committed to making a difference, one
+          footprint at a time.
+        </li>
+      </ul>
     </section>
   );
 }

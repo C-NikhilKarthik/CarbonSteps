@@ -4,7 +4,7 @@ import { FaCar } from "react-icons/fa";
 export default function Information() {
   return (
     <section className="bg-color3 w-full">
-      <div className="w-full flex flex-col items-center md:flex-row py-24">
+      <div className="w-full flex flex-col gap-10 items-center md:flex-row py-24">
         <div className="md:max-w-lg w-full px-10">
           <span className="text-2xl text-slate-900  ">
             Unlock the Power of Sustainable Living
@@ -22,12 +22,41 @@ export default function Information() {
           </span>
           <div className="bg-white text-color4 rounded p-4">
             <div className=""></div>
+            <div className="grid grid-cols-2 gap-4 grid-rows-2 w-full">
+              <div className="bg-color3 rounded text-slate-600 p-4 flex items-center gap-4">
+                <FaCar className="text-2xl" />
+                <span>Optimize your transportation</span>
+              </div>
+
+              <div className="bg-color3 rounded text-slate-600 p-4 flex items-center gap-4">
+                <FaCar className="text-2xl" />
+                <div className="">
+                  <span>Direct Analysis</span>
+                  <span>Identify areas for improvement</span>
+                </div>
+              </div>
+
+              <div className="bg-color3 rounded text-slate-600 p-4 flex items-center gap-4">
+                <FaCar className="text-2xl" />
+                <div className="">
+                  <span>Energy Usage Monitoring</span>
+                </div>
+              </div>
+
+              <div className="bg-color3 rounded text-slate-600 p-4 flex items-center gap-4">
+                <FaCar className="text-2xl" />
+                <div className="">
+                  <span>Comprehensive Data</span>
+                  <span>visualization to track</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div className="w-full py-24 flex flex-col items-center md:flex-row ">
+      <div className="w-full pb-16 flex flex-col items-center md:flex-row ">
         <div className="w-full md:w-2/5"></div>
-        <div className="w-full md:w-3/5 border border-color1 p-16">
+        <div className="w-full md:w-3/5 border border-color4 rounded-l border-r-0 p-16">
           <div className="text-color1 font-semibold text-2xl">
             Tailored Recommendations
           </div>

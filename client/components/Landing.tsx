@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Landing() {
   return (
     <section className="min-h-[100dvh] relative w-full flex flex-col items-center justify-center pt-16">
-      <div className="max-w-5xl flex flex-col gap-4 items-center">
+      <div className="max-w-5xl flex flex-col px-4 gap-4 items-center">
         <span className="text-[clamp(36px,4vw,52px)] font-semibold tracking-tight leading-[1] text-color1">
           Track Your Carbon Footprint.
         </span>

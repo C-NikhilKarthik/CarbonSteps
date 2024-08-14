@@ -4,8 +4,8 @@ import React from "react";
 export default function Footer() {
   return (
     <footer className="bg-[#663a14] w-full pt-16 px-10 pb-6">
-      <div className="flex w-full pb-8">
-        <div className=" text-[#91a559] w-[400px] text-xl font-bold">
+      <div className="flex flex-col md:flex-row w-full pb-8">
+        <div className=" text-[#91a559] max-w-[400px] text-xl pb-8 font-bold">
           Eco<span className="text-[#bc6c25]">Tracker</span>
         </div>
         <div className="flex-1 text-sm grid md:grid-cols-3 gap-4 grid-cols-1">

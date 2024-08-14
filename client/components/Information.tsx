@@ -3,7 +3,7 @@ import { FaCar } from "react-icons/fa";
 
 export default function Information() {
   return (
-    <section className="bg-color3 w-full">
+    <section className="bg-color3 w-full px-4 ">
       <div className="w-full flex flex-col gap-10 items-center md:flex-row py-24">
         <div className="md:max-w-lg w-full px-10">
           <span className="text-2xl text-slate-900  ">
@@ -22,14 +22,14 @@ export default function Information() {
           </span>
           <div className="bg-white text-color4 rounded p-4">
             <div className=""></div>
-            <div className="grid grid-cols-2 gap-4 grid-rows-2 w-full">
+            <div className="grid md:grid-cols-2 gap-4 grid-cols-1 md:grid-rows-2 w-full">
               <div className="bg-color3 rounded text-slate-600 p-4 flex items-center gap-4">
-                <FaCar className="text-2xl" />
+                <FaCar className="text-2xl flex-none" />
                 <span>Optimize your transportation</span>
               </div>
 
               <div className="bg-color3 rounded text-slate-600 p-4 flex items-center gap-4">
-                <FaCar className="text-2xl" />
+                <FaCar className="text-2xl flex-none" />
                 <div className="">
                   <span>Direct Analysis</span>
                   <span>Identify areas for improvement</span>
@@ -37,14 +37,14 @@ export default function Information() {
               </div>
 
               <div className="bg-color3 rounded text-slate-600 p-4 flex items-center gap-4">
-                <FaCar className="text-2xl" />
+                <FaCar className="text-2xl flex-none" />
                 <div className="">
                   <span>Energy Usage Monitoring</span>
                 </div>
               </div>
 
               <div className="bg-color3 rounded text-slate-600 p-4 flex items-center gap-4">
-                <FaCar className="text-2xl" />
+                <FaCar className="text-2xl flex-none" />
                 <div className="">
                   <span>Comprehensive Data</span>
                   <span>visualization to track</span>

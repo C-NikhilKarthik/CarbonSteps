@@ -8,10 +8,57 @@ import { FaMotorcycle } from "react-icons/fa6";
 
 export default function Page() {
   const [option, setOption] = useState(0);
+  const [from, setFrom] = useState("Delhi");
+  const [fromDetail, setFromDetail] = useState("DEL Airport");
+  const [to, setTo] = useState("Bangalore");
+  const [toDetail, setToDetail] = useState("KSR Airport");
+  const [time, setTime] = useState("00:00");
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    // Combine 'from' and 'fromDetail', 'to' and 'toDetail'
+    const home = `${fromDetail}, ${from}`;
+    const work = `${toDetail}, ${to}`;
+
+    // Map option to transportation type
+    const transportOptions = ["plane", "train", "bus", "car", "bike"];
+    const transportation = transportOptions[option];
+
+    // Prepare the payload for the API call
+    const payload = {
+      home,
+      work,
+      transportation,
+      timing: time,
+    };
+
+    console.log(payload);
+
+    // Example API call
+    // try {
+    //   const response = await fetch("/api/your-endpoint", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(payload),
+    //   });
+
+    //   const result = await response.json();
+    //   console.log(result);
+    // } catch (error) {
+    //   console.error("Error:", error);
+    // }
+  };
+
   return (
     <main className="min-h-screen w-full">
-      <div className="h-screen p-4 md:h-[60vh] bg-[url('/trackbg.jpg')] bg-cover w-full relative flex-col flex items-center justify-center gap-4 bg-center">
-        <div className="max-w-4xl w-full rounded-lg pt-20 bg-white z-[1] flex justify-center mx-auto relative p-4">
+      <div className="h-screen p-4 md:h-[80vh] bg-[url('/trackbg.jpg')] bg-cover w-full relative flex-col flex items-center justify-center gap-4 bg-center">
+        <form
+          onSubmit={handleSubmit}
+          className="max-w-4xl w-full rounded-lg pt-20 bg-white z-[1] flex justify-center mx-auto relative p-4"
+        >
           <div className="absolute overflow-x-auto px-4 top-0 justify-center -translate-y-1/2 w-4/5 bg-white z-10 shadow-lg rounded-lg py-4 flex items-center">
             <div className="flex relative items-center px-2 h-full w-fit">
               <div
@@ -64,11 +111,13 @@ export default function Page() {
             <div className="p-3 px-6 flex flex-col cursor-pointer flex-none w-full max-w-[300px] transition-all duration-500 text-black border-b md:border-r border-slate-400">
               <span className="">From</span>
               <input
-                defaultValue={"Delhi"}
+                value={from}
+                onChange={(e) => setFrom(e.target.value)}
                 className="border-none text-2xl font-semibold mt-3 leading-[0.8] outline-none w-full focus:ring-none bg-transparent"
               />
               <input
-                defaultValue={"DEL Airport"}
+                value={fromDetail}
+                onChange={(e) => setFromDetail(e.target.value)}
                 className="border-none text-sm outline-none w-full focus:ring-none bg-transparent"
               />
             </div>
@@ -76,57 +125,59 @@ export default function Page() {
             <div className="p-3 px-6 flex flex-col cursor-pointer flex-none w-full max-w-[300px] transition-all duration-500 text-black border-b md:border-r border-slate-400">
               <span className="">To</span>
               <input
-                defaultValue={"Bangalore"}
+                value={to}
+                onChange={(e) => setTo(e.target.value)}
                 className="border-none text-2xl font-semibold mt-3 leading-[0.8] outline-none w-full focus:ring-none bg-transparent"
               />
               <input
-                defaultValue={"KSR Airport"}
+                value={toDetail}
+                onChange={(e) => setToDetail(e.target.value)}
                 className="border-none text-sm outline-none w-full focus:ring-none bg-transparent"
               />
             </div>
 
             <div className="p-3 px-6 flex flex-col cursor-pointer w-full transition-all duration-500 text-black">
-              <form className="max-w-[8.5rem] mx-auto">
-                <label
-                  htmlFor="time"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Select time:
-                </label>
-                <div className="flex">
-                  <input
-                    type="time"
-                    id="time"
-                    className="rounded-none group rounded-s-lg bg-gray-50 border text-gray-900 leading-none focus:ring-blue-500 focus:border-blue-500 block flex-1 w-full text-sm border-gray-300 p-2.5"
-                    min="09:00"
-                    max="18:00"
-                    value="00:00"
-                    required
-                  />
-                  <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-s-0 border-s-0 border-gray-300 rounded-e-md">
-                    <svg
-                      className="w-4 h-4 text-gray-500"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </span>
-                </div>
-              </form>
+              <label
+                htmlFor="time"
+                className="block mb-2 text-sm font-medium text-gray-900"
+              >
+                Select time:
+              </label>
+              <div className="flex">
+                <input
+                  type="time"
+                  id="time"
+                  className="rounded-none group rounded-s-lg bg-gray-50 border text-gray-900 leading-none focus:ring-blue-500 focus:border-blue-500 block flex-1 w-full text-sm border-gray-300 p-2.5"
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
+                  required
+                />
+                <span className="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border rounded-s-0 border-s-0 border-gray-300 rounded-e-md">
+                  <svg
+                    className="w-4 h-4 text-gray-500"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <button className="bg-color2 absolute bottom-20 text-white px-4 py-2 rounded">
-          Estimate
-        </button>
+          <button
+            type="submit"
+            className="bg-color2 absolute -bottom-20 text-white px-4 py-2 rounded"
+          >
+            Estimate
+          </button>
+        </form>
       </div>
 
       <div className="w-full py-24 px-2">

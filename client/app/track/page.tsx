@@ -14,7 +14,7 @@ export default function Page() {
   const [toDetail, setToDetail] = useState("KSR Airport");
   const [time, setTime] = useState("00:00");
   const [carbonEmission, setCarbonEmission] = useState<number | null>(null);
-
+  const [suggestion, setSuggestion] = useState<string | null>(null);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -23,13 +23,16 @@ export default function Page() {
     const transportOptions = ["plane", "train", "bus", "car", "bike"];
     const transportation = transportOptions[option];
 
-    const prompt = `You are a helpful assistant and are dealing with calculating an approximate value of individual carbon emission through ${transportation} transportation mode. The source point is ${home} and destination is ${work}, and roughly travel time is of ${time}. Based on the data, estimate the amount of carbon emission of the individual. Be to the point and work on what the generic values of each are and return AN INTEGER APPROXIMATION.Do not give me any textual data only the integer`;
+    const prompt1 = `You are a helpful assistant and are dealing with calculating an approximate value of individual carbon emission through ${transportation} transportation mode. The source point is ${home} and destination is ${work}, and roughly travel time is of ${time}. Based on the data, estimate the amount of carbon emission of the individual. Be to the point and work on what the generic values of each are and return AN INTEGER APPROXIMATION.Do not give me any textual data only the integer`;
+
+    const prompt2 = `You are a helpful assistant and are dealing with calculating an approximate value of individual carbon emission through ${transportation} transportation mode. The source point is ${home} and destination is ${work}, and roughly travel time is of ${time}. Based on the data, estimate the amount of carbon emission of the individual. Be to the point and tell me pointwise steps to curb the emission. JUST RETURN YOUR ANSWER FOCUSSING ON STEPS TO CURB AND NOTHING ELSE.`;
 
     const payload = {
-      prompt,
+      prompt1,
+      prompt2,
     };
 
-    console.log(payload);
+    // console.log(payload);
 
     try {
       console.log("Sending request to the backend...");
@@ -40,23 +43,29 @@ export default function Page() {
         },
         body: JSON.stringify(payload),
       });
-    
-      console.log("Request sent, awaiting response...");
-      
+
+      // console.log("Request sent, awaiting response...");
+
       // Check if the response is OK (status code 200-299)
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-    
-      console.log("Response received, processing response...");
-    
+
+      // console.log("Response received, processing response...");
+
       const result = await response.json();
-      console.log("Response processed, setting state with result:", result);
-      
-      setCarbonEmission(result.result);
+
+      // console.log("Response processed, setting state with result:", result);
+
+      setCarbonEmission(result.result1);
+      setSuggestion(
+        result.result2
+          .replace(/\*\*/g, "") // Removes all **
+          .replace(/\\n/g, "\n")
+      );
     } catch (error) {
       console.error("Error occurred during the fetch operation:", error);
-    }    
+    }
   };
 
   return (
@@ -199,14 +208,14 @@ export default function Page() {
               </span>
             </div>
             <div className="flex-none text-4xl font-semibold text-white">
-              10
+              {carbonEmission}
             </div>
           </div>
           <div className="flex flex-col gap-2 p-4">
             <span className="text-xl font-semibold text-[#a5a5a5]">
               Suggestions
             </span>
-            <span className="text-white">{}</span>
+            <span className="text-white">{suggestion}</span>
           </div>
         </div>
       </div>

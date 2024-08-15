@@ -13,43 +13,50 @@ export default function Page() {
   const [to, setTo] = useState("Bangalore");
   const [toDetail, setToDetail] = useState("KSR Airport");
   const [time, setTime] = useState("00:00");
+  const [carbonEmission, setCarbonEmission] = useState<number | null>(null);
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Combine 'from' and 'fromDetail', 'to' and 'toDetail'
     const home = `${fromDetail}, ${from}`;
     const work = `${toDetail}, ${to}`;
-
-    // Map option to transportation type
     const transportOptions = ["plane", "train", "bus", "car", "bike"];
     const transportation = transportOptions[option];
 
-    // Prepare the payload for the API call
+    const prompt = `You are a helpful assistant and are dealing with calculating an approximate value of individual carbon emission through ${transportation} transportation mode. The source point is ${home} and destination is ${work}, and roughly travel time is of ${time}. Based on the data, estimate the amount of carbon emission of the individual. Be to the point and work on what the generic values of each are and return AN INTEGER APPROXIMATION.Do not give me any textual data only the integer`;
+
     const payload = {
-      home,
-      work,
-      transportation,
-      timing: time,
+      prompt,
     };
 
     console.log(payload);
 
-    // Example API call
-    // try {
-    //   const response = await fetch("/api/your-endpoint", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(payload),
-    //   });
-
-    //   const result = await response.json();
-    //   console.log(result);
-    // } catch (error) {
-    //   console.error("Error:", error);
-    // }
+    try {
+      console.log("Sending request to the backend...");
+      const response = await fetch("http://localhost:5000/llm/fetch_result", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+    
+      console.log("Request sent, awaiting response...");
+      
+      // Check if the response is OK (status code 200-299)
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+    
+      console.log("Response received, processing response...");
+    
+      const result = await response.json();
+      console.log("Response processed, setting state with result:", result);
+      
+      setCarbonEmission(result.result);
+    } catch (error) {
+      console.error("Error occurred during the fetch operation:", error);
+    }    
   };
 
   return (

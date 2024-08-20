@@ -36,13 +36,16 @@ export default function Page() {
 
     try {
       console.log("Sending request to the backend...");
-      const response = await fetch("http://localhost:5000/llm/fetch_result", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
-      });
+      const response = await fetch(
+        "https://carbonsteps.onrender.com/llm/fetch_result",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
 
       // console.log("Request sent, awaiting response...");
 
